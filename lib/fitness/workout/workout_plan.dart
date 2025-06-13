@@ -19,8 +19,8 @@ class Exercise {
 
 class ExerciseSet {
 
-  Int reps;
-  Int weight;
+  int reps;
+  int weight;
 
   ExerciseSet(this.reps, this.weight);
 
