@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:my_ai_fitness_buddy/fitness/navigation/navigation_bar.dart';
 import 'package:my_ai_fitness_buddy/fitness/workout/activity/active_workout_widget.dart';
 import 'package:my_ai_fitness_buddy/fitness/workout/configuration/exercise_configuration_widget.dart';
@@ -17,7 +18,34 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Fit App',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.indigoAccent),
+        // Define the default brightness and colors.
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: Colors.purple,
+          // ···
+          brightness: Brightness.light,
+        ),
+
+        // Define the default `TextTheme`. Use this to specify the default
+        // text styling for headlines, titles, bodies of text, and more.
+        textTheme: TextTheme(
+          displayLarge: const TextStyle(
+            fontSize: 60,
+            fontWeight: FontWeight.bold,
+          ),
+          // ···
+          titleLarge: GoogleFonts.oswald(
+            fontSize: 24,
+            fontStyle: FontStyle.normal,
+          ),
+          bodyMedium: GoogleFonts.oswald(
+            fontSize: 14,
+            fontStyle: FontStyle.normal,
+          ),
+          displaySmall: GoogleFonts.merriweather(
+            fontSize: 12,
+            fontStyle: FontStyle.normal,
+          ),
+        ),
       ),
       home: InternalNavigationBar(),
     );

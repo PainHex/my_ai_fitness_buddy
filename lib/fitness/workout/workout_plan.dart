@@ -1,10 +1,10 @@
 import 'dart:ffi';
 
-class WorkoutPlan {
+class WorkoutTemplate {
 
   List<Exercise> exercises;
 
-  WorkoutPlan(this.exercises);
+  WorkoutTemplate(this.exercises);
 
 }
 

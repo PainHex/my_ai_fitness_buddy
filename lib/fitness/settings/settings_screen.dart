@@ -25,29 +25,28 @@ class SettingsScreen extends StatelessWidget {
         child: Icon(Icons.add),
       ),
       drawer: Drawer(
-        // Add a ListView to the drawer. This ensures the user can scroll
-        // through the options in the drawer if there isn't enough vertical
-        // space to fit everything.
         child: ListView(
-          // Important: Remove any padding from the ListView.
           padding: EdgeInsets.zero,
           children: [
-            const DrawerHeader(
-              decoration: BoxDecoration(color: Colors.blue),
-              child: Text('Configure exercises'),
-            ),
             ListTile(
-              title: const Text('Add an Exercise'),
+              title: const Text('My Exercises'),
               onTap: () {
-                // Update the state of the app.
-                // ...
+
               },
             ),
             ListTile(
-              title: const Text('Customize an Exercise'),
+              title: const Text('My Workout Templates'),
               onTap: () {
-                // Update the state of the app.
-                // ...
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => ExerciseConfigurationWidget()),
+                );
+              },
+            ),
+            ListTile(
+              title: const Text('My Workout Plans'),
+              onTap: () {
+
               },
             ),
           ],
