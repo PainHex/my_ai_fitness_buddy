@@ -1,15 +1,15 @@
 import 'package:my_ai_fitness_buddy/database/model/base_database_entity.dart';
 
-class Exercise implements BaseDatabaseEntity {
+class ExerciseModel implements BaseDatabaseEntity {
 
   static const String TABLE_NAME = "exercise";
 
   int? id;
   String name;
 
-  Exercise(this.id, this.name);
+  ExerciseModel(this.id, this.name);
 
-  Exercise.fromMap(Map<String, dynamic> rowData)
+  ExerciseModel.fromMap(Map<String, dynamic> rowData)
     : id = rowData['id'],
       name = rowData['name'];
 

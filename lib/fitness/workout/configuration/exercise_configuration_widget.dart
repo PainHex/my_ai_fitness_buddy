@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:my_ai_fitness_buddy/database/model/exercise.dart';
+import 'package:my_ai_fitness_buddy/fitness/settings/service/exercise_service.dart';
 import 'package:my_ai_fitness_buddy/fitness/workout/configuration/set_configuration_widget.dart';
 import 'package:my_ai_fitness_buddy/fitness/workout/workout_plan.dart';
 import 'package:numeric_selector/numeric_selector.dart';
@@ -11,22 +13,21 @@ class ExerciseConfigurationWidget extends StatefulWidget {
   State<StatefulWidget> createState() {
     return _ExerciseConfigurationWidgetState();
   }
-
 }
 
-class _ExerciseConfigurationWidgetState extends State<ExerciseConfigurationWidget> {
+class _ExerciseConfigurationWidgetState
+    extends State<ExerciseConfigurationWidget> {
+  ExerciseService exerciseService = ExerciseService();
+
   TextEditingController exerciseName = TextEditingController();
   int _numberOfSets = 4;
   List<SetConfigurationWidget> sets = [];
 
   Widget _generateSetConfigurations() {
-
     sets = [];
 
     for (int i = 0; i < _numberOfSets; i++) {
-      sets.add(
-          SetConfigurationWidget()
-      );
+      sets.add(SetConfigurationWidget());
     }
 
     return Column(mainAxisAlignment: MainAxisAlignment.center, children: sets);
@@ -49,13 +50,32 @@ class _ExerciseConfigurationWidgetState extends State<ExerciseConfigurationWidge
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    TextField(
-                      controller: exerciseName,
-                      textAlign: TextAlign.center,
-                      decoration: InputDecoration(
-                        labelText: "Exercise Name",
-                        floatingLabelAlignment: FloatingLabelAlignment.center,
-                      ),
+                    FutureBuilder<List<ExerciseModel>>(
+                      future: exerciseService.getExercises(),
+                      builder: (
+                        BuildContext context,
+                        AsyncSnapshot<List<ExerciseModel>> snapshot,
+                      ) {
+                        return Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            DropdownButton<String>(
+                              items:
+                                  snapshot.data?.map((value) {
+                                    print(value.name);
+                                    return DropdownMenuItem<String>(
+                                      value: value.name,
+                                      child: Text(value.name),
+                                    );
+                                  }).toList(),
+                              onChanged: (String? newValue) {
+                                // Handle exercise selection
+                              },
+                              hint: Text("Select Exercise"),
+                            ),
+                          ],
+                        );
+                      },
                     ),
                     Text("Sets"),
                     HorizontalNumericSelector(
@@ -85,11 +105,7 @@ class _ExerciseConfigurationWidgetState extends State<ExerciseConfigurationWidge
                       showSelectedValue: false,
                     ),
                     _generateSetConfigurations(),
-                    ElevatedButton(
-                      onPressed: () {
-                      },
-                      child: Text('Add'),
-                    ),
+                    ElevatedButton(onPressed: () {}, child: Text('Add')),
                     ElevatedButton(
                       onPressed: () {
                         Navigator.pop(context);
