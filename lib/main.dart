@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:my_ai_fitness_buddy/database/database_helper.dart';
 import 'package:my_ai_fitness_buddy/fitness/navigation/navigation_bar.dart';
 import 'package:my_ai_fitness_buddy/fitness/workout/activity/active_workout_widget.dart';
 import 'package:my_ai_fitness_buddy/fitness/workout/configuration/exercise_configuration_widget.dart';

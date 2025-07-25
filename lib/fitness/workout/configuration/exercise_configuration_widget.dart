@@ -32,12 +32,6 @@ class _ExerciseConfigurationWidgetState extends State<ExerciseConfigurationWidge
     return Column(mainAxisAlignment: MainAxisAlignment.center, children: sets);
   }
 
-  Exercise getExercise() {
-    return Exercise(exerciseName.text, sets.map((setWidget) {
-      return setWidget.getExerciseSet();
-    }).toList());
-  }
-
   @override
   Widget build(BuildContext context) {
     return Material(
@@ -93,7 +87,6 @@ class _ExerciseConfigurationWidgetState extends State<ExerciseConfigurationWidge
                     _generateSetConfigurations(),
                     ElevatedButton(
                       onPressed: () {
-                        return Navigator.pop(context, getExercise());
                       },
                       child: Text('Add'),
                     ),
